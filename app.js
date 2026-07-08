@@ -27,8 +27,8 @@ function partPriority(p) {
     if (/^(TRANSFO|MECH|MOTOR)/.test(p)) return 3;
     if (p.startsWith("BLOCK")) return 4;
     if (/^(SHAFT|FUSE)/.test(p)) return 5;
-    if (/^(GFCI-OUTLET|BOX|PLATE25)/.test(p)) return 6;
-    if (/^(GROUNDBAR|BRACKET|TERMINA)/.test(p)) return 7;
+    if (/^(GFCI-OUTLET|GFCI-30MA-ALT|BOX|PLATE25)/.test(p)) return 6;
+    if (/^(GROUNDBAR|BRACKET|TERMINA|TERM_COV_XT1|RING_KIT)/.test(p)) return 7;
     if (p.startsWith("WIRE")) return 8;
     return 9;
 }
@@ -61,7 +61,7 @@ function findParts(text) {
         return null;
     };
     const normalizeToken = (tok) => tok.startsWith("#") ? tok.slice(1) : tok;
-    const isPartToken = (tok) => /^(J-BOX|PLATE|CIRCUITBRK|LUG|LOCK|ROTARY|HANDLE|COVER|TRANSFO|MECH|MOTOR|BLOCK|FUSE|SHAFT|BOX|GFCI-OUTLET|PLATE25|GROUNDBAR|BRACKET|TERMINA)/.test(tok);
+    const isPartToken = (tok) => /^(J-BOX|PLATE|CIRCUITBRK|LUG|LOCK|ROTARY|HANDLE|COVER|TRANSFO|MECH|MOTOR|BLOCK|FUSE|SHAFT|BOX|GFCI-OUTLET|GFCI-30MA-ALT|PLATE25|GROUNDBAR|BRACKET|TERMINA|TERM_COV_XT1|RING_KIT)/.test(tok);
     const ignoreQtyToken = (tok) => /^(WHT|BLK|RED|GRN|YEL|ORG|BRN|PNK|H\d+)$/i.test(tok);
 
     let tokens = text.match(/#?\d+MCM|\(\d+\)|[A-Z0-9_\-/]+/g) || [];
